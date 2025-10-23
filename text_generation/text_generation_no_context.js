@@ -4,9 +4,10 @@ const genAI = new GoogleGenAI( {} );
 
 genAI.models.generateContent({
   model: 'gemini-2.5-flash',
-  contents: 'When was the last major AWS outage?'
+  contents: 'What promotional items should we give out at our conference booth?'
 }).then( resp => {
   console.log(resp.text)
 })
+
 
 
