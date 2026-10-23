@@ -11,7 +11,6 @@ router.get('/feedback-form', function(req, res, next){
 })
 
 router.post('/submit-feedback', function(req, res, next){
-    // get the form data from the URL query 
     const formData = req.body
     
     let message = formData.comments
@@ -27,11 +26,11 @@ router.post('/submit-feedback', function(req, res, next){
         // TODO send the message to the relevant departments 
 
     }).catch(err => { return next(err) } )
-
- 
-
 })
 
 module.exports = router
+
+
+
 
 
