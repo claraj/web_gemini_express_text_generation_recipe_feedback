@@ -1,0 +1,17 @@
+{
+  "name": "student-feedback-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "clara",
+  "license": "ISC",
+  "dependencies": {
+    "@google/genai": "^1.26.0",
+    "body-parser": "2.2.0",
+    "express": "^5.1.0",
+    "hbs": "^4.2.0"
+  }
+}

@@ -2,13 +2,14 @@ let { GoogleGenAI, Type } = require("@google/genai")
 
 const genAI = new GoogleGenAI( {} );
 
-const systemInstruction = `You are a recipe suggestion bot for a health-concious, budget-friendly website. 
-    Suggest recipes that are low cost and use healthy ingredients. You don't have to use all the 
+const systemInstruction = `You are a recipe suggestion bot for a website. 
+    Suggest recipes that use the ingredients given. You don't have to use all the 
     ingredients the user enters, especially if they enter a lot of ingredients, but use as many as possible.`
 
 function generateRecipe(ingredients) {
 
-    let prompt = `Suggest one recipe that uses these ingredients. Return the response in JSON format.
+    let prompt = `Suggest one recipe that uses these ingredients. Return the response in JSON format
+                using the schema provided
                 Ingredients: ${ingredients}`
 
     return genAI.models.generateContent({
@@ -49,5 +50,6 @@ function generateRecipe(ingredients) {
     })
 }
 
-
 module.exports = generateRecipe
+
+

@@ -6,7 +6,6 @@ router.get('/', function(req, res, next){
     res.render('enter_ingredients')
 })
 
-
 router.post('/generate_recipe', function(req, res, next){
 
     const formData = req.body
@@ -19,5 +18,6 @@ router.post('/generate_recipe', function(req, res, next){
 })
 
 module.exports = router
+
 
 
