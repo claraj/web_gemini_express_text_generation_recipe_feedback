@@ -29,6 +29,3 @@ function selectDepartments(message) {
 }
 
 module.exports = selectDepartments
-
-
-

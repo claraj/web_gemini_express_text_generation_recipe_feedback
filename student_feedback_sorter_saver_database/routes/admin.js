@@ -1,43 +1,79 @@
 const express = require('express')
 const router = express.Router() 
 const departmentInfo = require('../services/departments.json')
-const feedback = require('../model/feedback')
 const Feedback = require('../model').Feedback
-
-console.log(departmentInfo)
 
 const departmentNames = departmentInfo.departments.map( d => d.department )
 
-// get page - include list of available departments 
-
 router.get('/', async function(req, res, next) {
+    const selectedDepartmentName = req.query.department
 
-    //get all the feedback 
-    const allFeedback = await Feedback.findAll()  // GROSS
+    try {
 
-    // is there a query? find all matching dept feedback 
-    console.log(req.query)
-    const depName = req.query.department
+        // get all the feedback 
+        const allFeedback = await Feedback.findAll()
 
-    if (depName) {
-        const departmentFeedback = allFeedback.filter( fb => fb.departments.includes(depName))  // ALSO GROSS
-        return res.render('admin', {
-            departmentNames: departmentNames, 
-            feedbackHeading: depName, 
-            feedback: departmentFeedback
-        })
+        // If there was a department selected, filter to only show feedback for that department 
+        // This is inefficient with lots of feedback. A better approach is to query the database for matching feedback
+        // however, different databases support (or don't support) different types of JSON query, makes our app more complex. 
+        if (selectedDepartmentName) {
+            const departmentFeedback = allFeedback.filter( fb => fb.departments.includes(selectedDepartmentName))  
+            return res.render('admin', {
+                departmentNames: departmentNames, 
+                feedbackHeading: selectedDepartmentName, 
+                feedback: departmentFeedback
+            })
+        }
+
+        // Otherwise, no department selected, show all feedback 
+        else {   
+            return res.render('admin', {
+                departmentNames: departmentNames,
+                feedbackHeading: 'All Feedback',
+                feedback: allFeedback
+            })
+        }
+        
+    }
+    catch (error) {
+        res.locals.message = 'Sorry, error fetching feedback'  // display on the error page 
+        next(error)
     }
 
-    else {   // no department selected 
-        return res.render('admin', {
-            departmentNames: departmentNames,
-            feedbackHeading: 'All Feedback',
-            feedback: allFeedback
-        })
-    }
 })
 
+/*
 
-// JSON route for all feedbacks for that department 
+// then/catch version
+router.get('/', function(req, res, next) {
+    const selectedDepartmentName = req.query.department
+
+    // get all the feedback 
+    Feedback.findAll().then(allFeedback => {
+
+        // If there was a department selected, filter to only show feedback for that department 
+        // This is inefficient with lots of feedback. A better approach is to query the database for matching feedback
+        // however, different databases support (or don't support) different types of JSON query, makes our app more complex. 
+        if (selectedDepartmentName) {
+            const departmentFeedback = allFeedback.filter( fb => fb.departments.includes(selectedDepartmentName))  // ALSO GROSS
+            return res.render('admin', {
+                departmentNames: departmentNames, 
+                feedbackHeading: selectedDepartmentName, 
+                feedback: departmentFeedback
+            })
+        }
+
+        // Otherwise, no department selected, show all feedback 
+        else {   
+            return res.render('admin', {
+                departmentNames: departmentNames,
+                feedbackHeading: 'All Feedback',
+                feedback: allFeedback
+            })
+        }
+    }) 
+
+})
+    */
 
 module.exports = router

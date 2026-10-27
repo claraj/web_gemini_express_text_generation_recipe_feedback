@@ -1,12 +1,12 @@
+this:
+
 1. Add database to store feedbacks 
-2. Handle errors
-3. LLM sorting goes in a task queue BullMQ, Redis --- how to do local dev? Redis cloud
-4. Deploy to Azure. 
-    a. Web app
-    b. database
-    c. LLM
-    d. task queue 
-    e. monitoring
+2. Add LLM categorization
+3. Admin display, more about routing 
+4. Async-await. Make request to select departments AFTER sending saving in DB and sending response to user.  What is useful feedback to user vs. logging for developer
+5. Handle errors 
 
+next: 
 
-email validaton - user may not enter, we may want to store invalid emails just in case they give insight into the comments or we need to try to contact the person, for example someone's email may be mistakenly entered as 'clara.jamesminneapolis.edu' which can be make a educated guess as to what the actual email is, and replace the missing  @ to contact the person if needed. The college also has lists of valid student emails to match people to. 
+3. set up GitHub actions for automatic redeploy
+4. Talk about versions and security 
