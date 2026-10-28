@@ -8,7 +8,7 @@ let prompt = `Suggest one recipe that uses these ingredients.
 Ingredients: ${userInput}`
 
 genAI.models.generateContent({
-  model: 'gemini-2.5-flash',
+  model: 'gemini-3.1-flash-lite',
   contents: prompt,
   config: {
     systemInstruction: `You are a recipe suggestion bot for a health-concious, budget-friendly website. 
