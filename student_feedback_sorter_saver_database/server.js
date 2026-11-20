@@ -25,13 +25,13 @@ app.set('view engine', 'hbs')
 app.use('/', indexRouter)
 app.use('/admin', adminRouter)
 
-app.use( function(err, req, res, next) {
+// error handler 
+app.use(function(err, req, res, next) {
     console.error(err.stack)
     res.status(500).render('error')
 })
 
 // Start server running 
-
 const port = process.env.PORT || 3000
 
 let server = app.listen(port, function() {

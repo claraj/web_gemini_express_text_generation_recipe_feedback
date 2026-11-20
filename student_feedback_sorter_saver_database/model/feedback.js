@@ -1,4 +1,3 @@
-
 const { DataTypes } = require('sequelize')
 
 module.exports = (sequelizeDatabase) => {
@@ -12,21 +11,14 @@ module.exports = (sequelizeDatabase) => {
             email: {
                 type: DataTypes.STRING,
                 allowNull: true,  // optional, not required 
-                // validate: {
-                //     isEmail: true   // ensure it is in an email format, if it is provided 
-                // }
             },
             isCurrentStudent: {
                 type: DataTypes.BOOLEAN,  
                 allowNull: true   // also not required 
-            },            comments: {
-                type: DataTypes.STRING,
-                allowNull: false    // The only thing a user must include 
             },
-            dateSubmitted: {
-                type: DataTypes.DATE,
-                defaultValue: DataTypes.NOW,
-                allowNull: false
+            comments: {
+                type: DataTypes.STRING,
+                allowNull: false   // The only thing a user must include 
             },
             departments: {
                 type: DataTypes.JSON, 
@@ -40,3 +32,5 @@ module.exports = (sequelizeDatabase) => {
 
     return Feedback
 }
+
+

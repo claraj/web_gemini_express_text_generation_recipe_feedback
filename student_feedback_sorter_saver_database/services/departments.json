@@ -46,6 +46,11 @@
         "email": "technology.support@college.edu"
       },
       {
+        "department": "Tutoring and Academic Support",
+        "services": "Provides help with class tutoring, writing, math, and using D2L and other digital learning tools.",
+        "email": "technology.support@college.edu"
+      },
+      {
         "department": "Student Clubs",
         "services": "Supports student-led organizations and activities that promote community, leadership, and personal interests.",
         "email": "student.clubs@college.edu"
